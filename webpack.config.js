@@ -5,7 +5,8 @@ const config = {
   entry: './src/index.js',  //  상대경로
   output: {
     path: path.resolve(__dirname, 'build'), //  절대경로
-    filename: 'bundle.js'
+    filename: 'bundle.js',
+    publicPath: 'build/'
   },
   module: {
     rules: [
@@ -22,7 +23,10 @@ const config = {
       {
         test: /\.(jpe?g|png|gif|svg)$/,
         use: [
-          'url-loader',
+          {
+            loader: 'url-loader',
+            options: { limit: 40000 }
+          },
           'image-webpack-loader'
         ]
       }
